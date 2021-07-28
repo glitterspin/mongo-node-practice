@@ -13,26 +13,21 @@ MongoClient.connect(url, { useUnifiedTopology: true }, (err, client) => {
     const db = client.db(dbname);
 
     db.dropCollection('campsites', (err, result) => {
-        assert. strictEqual(err, null);
-        console.log('Dropped collection', result);
+        assert.strictEqual(err, null);
+        console.log('Dropped Collection', result);
 
         const collection = db.collection('campsites');
 
-        collection.insertOne({ name: "Breadcrumb Trail Campground", description: "follow this to find the witch!"},
+        collection.insertOne({ name: "Breadcrumb Trail Campground", description: "follow this to find the witch!" },
             (err, result) => {
-                assert. strictEqual(err, null);
+                assert.strictEqual(err, null);
                 console.log('Insert Document:', result.ops);
 
                 collection.find().toArray((err, docs) => {
                     assert.strictEqual(err, null);
-                    console.log('Insert Document:', result.ops);
+                    console.log('Found Document:', result.ops);
 
-                    collection.find().toArray((err, docs) => {
-                        assert.strictEqual(err, null);
-                        console.log('Found Documents:', docs);
-
-                        client.close();
-                    });
+                    client.close();
                 });
             });
     });
