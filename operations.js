@@ -13,7 +13,7 @@ exports.insertDocument = (db, document, collection, callback) => {
 };
 
 //find
-exports.findDocument = (db, collection, callback) => {
+exports.findDocuments = (db, collection, callback) => {
     const coll = db.collection(collection);
     coll.find().toArray((err, docs) => {
         assert.strictEqual(err, null);
