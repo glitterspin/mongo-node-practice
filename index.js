@@ -1,4 +1,4 @@
-const MongoClient = require('mogodb').MongoClient;
+const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert').strict;
 
 const url = 'mongodb://localhost:27017/';
@@ -24,7 +24,7 @@ MongoClient.connect(url, { useUnifiedTopology: true }, (err, client) => {
                 console.log('Insert Document:', result.ops);
 
                 collection.find().toArray((err, docs) => {
-                    AssertionError.strictEqual(err, null);
+                    assert.strictEqual(err, null);
                     console.log('Insert Document:', result.ops);
 
                     collection.find().toArray((err, docs) => {
