@@ -1,40 +1,26 @@
 //insert, remove, find, update
 //analagous to CRUD
 
-const assert = require('assert').strict;
-
 //insert
-exports.insertDocument = (db, document, collection, callback) => {
+exports.insertDocument = (db, document, collection) => {
     const coll = db.collection(collection);
-    coll.insertOne(document, (err,result) => {
-        assert.strictEqual(err, null);
-        callback(result);
-    });
+    return coll.insertOne(document);
 };
 
 //find
-exports.findDocuments = (db, collection, callback) => {
+exports.findDocuments = (db, collection) => {
     const coll = db.collection(collection);
-    coll.find().toArray((err, docs) => {
-        assert.strictEqual(err, null);
-        callback(docs);
-    })
+    return coll.find({}).toArray();
 };
 
 //remove
-exports.removeDocument = (db, document, collection, callback) => {
+exports.removeDocument = (db, document, collection) => {
     const coll = db.collection(collection);
-    coll.deleteOne(document, (err, result) => {
-        assert.strictEqual(err, null);
-        callback(result);
-    });
+    return coll.deleteOne(document);
 };
 
 //update
-exports.updateDocument = (db, document, update, collection, callback) => {
+exports.updateDocument = (db, document, update, collection) => {
     const coll = db.collection(collection);
-    coll.updateOne(document, { $set: update }, null, (err, result) => {
-        assert.strictEqual(err, null);
-        callback(result);
-    });
+    coll.updateOne(document, { $set: update }, null);
 };
